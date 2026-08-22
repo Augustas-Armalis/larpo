@@ -4,13 +4,13 @@
 
 Larpo is a senior-led website design and development studio for SaaS, AI, fintech, and software teams with a launch or growth milestone ahead.
 
-**Primary line:** Website design and development for SaaS & AI startups.
+**Primary line:** We design, code and launch websites for SaaS & AI startups.
 
 **Plain-language descriptor:** Strategy, identity, website design, and development for funded SaaS, AI, and fintech teams.
 
 **Primary audience:** Seed to Series B software founders and small growth teams that need stronger market perception without adding a full internal design function.
 
-**The category difference:** One senior team owns the entire website—from the first logo and page structure through design, development, and launch.
+**The category difference:** One senior team owns the entire website from the first logo and page structure through custom code, integrations, deployment and launch.
 
 ## The strategic choice
 
@@ -33,7 +33,7 @@ The commercial story follows one line:
 - [Kree8](https://www.kree8.studio/) contributes personality and confidence, but Larpo stays quieter and more product-literate.
 - [Parallel](https://www.parallelhq.com/) and [Deserve](https://deserve.studio/) reinforce the value of strong typography, a limited palette, and proof close to the claim.
 
-These references are ingredients, not templates. Larpo's aperture mark, milestone positioning, black-and-white restraint, and connected brand/web/product offer create the ownable combination.
+These references are ingredients, not templates. Larpo's aperture mark, milestone positioning, black-and-white restraint and fully handled website offer create the ownable combination.
 
 ## Buyer triggers
 
@@ -117,9 +117,9 @@ Selected work and availability: larpo.studio
 
 - **Paper:** `#FFFFFF`
 - **Ink:** `#151513`
-- **Soft surface:** `#F5F5F2`
-- **Quiet:** `#73736D`
-- **Line:** `#E9E9E6`
+- **Soft surface:** `#F4F5F6`
+- **Quiet:** `#66686D`
+- **Line:** `#E7E9EB`
 
 The exact Figma aperture mark is the signature. The navigation uses only the mark; the compact mark-and-name lockup is reserved for the footer. Do not scatter decorative versions throughout the page.
 
@@ -130,8 +130,8 @@ The page order is fixed: direct hero, infinite work reel, selected clients, conc
 ## Motion principles
 
 - Hero content and work enter once with opacity and small vertical transforms.
-- Scroll reveals use opacity and small vertical transforms only.
-- Image hover movement stays below 2% scale; button movement stays within 1px.
+- Sections do not animate on scroll.
+- Buttons never lift or translate on hover.
 - The work reel may loop continuously; it pauses on hover and becomes a static scrollable row when reduced motion is requested.
 - Transparent surfaces are limited to the navigation, secondary actions, proof, and pricing. No blobs or decorative blur fields.
 - Reduced-motion mode keeps all content visible and removes scroll-linked movement.
