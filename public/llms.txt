@@ -2,7 +2,7 @@
 
 > Larpo is a branding, web design and custom development studio for SaaS, AI and technology teams. Larpo takes a project from first idea or an existing brand through strategy, copy, visual identity, custom code, integrations and launch.
 
-Canonical website: https://augustas-armalis.github.io/larpo/
+Canonical website: https://larpo.studio/
 
 ## What Larpo does
 

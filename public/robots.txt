@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://augustas-armalis.github.io/larpo/sitemap.xml
+Sitemap: https://larpo.studio/sitemap.xml
