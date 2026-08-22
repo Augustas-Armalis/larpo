@@ -2,15 +2,15 @@
 
 ## Positioning
 
-Larpo is a senior-led design and development partner for funded software teams entering a higher-stakes stage: a launch, raise, repositioning, enterprise move, or major product expansion.
+Larpo is a senior-led website design and development studio for SaaS, AI, fintech, and software teams with a launch or growth milestone ahead.
 
-**Primary line:** Websites, product design, and branding for SaaS & AI startups.
+**Primary line:** Website design and development for SaaS & AI startups.
 
-**Plain-language descriptor:** Brand, websites, and product design for funded SaaS, AI, and fintech teams.
+**Plain-language descriptor:** Strategy, identity, website design, and development for funded SaaS, AI, and fintech teams.
 
 **Primary audience:** Seed to Series B software founders and small growth teams that need stronger market perception without adding a full internal design function.
 
-**The category difference:** Larpo connects the public promise (brand and website) to the product reality (interface and experience). One senior team owns the whole picture.
+**The category difference:** One senior team owns the entire website—from the first logo and page structure through design, development, and launch.
 
 ## The strategic choice
 
@@ -21,7 +21,7 @@ The useful whitespace is **the next-stage moment**. Larpo is for a software comp
 The commercial story follows one line:
 
 1. Your company has reached a higher-stakes milestone.
-2. Brand, website, and product now need to tell the same story.
+2. The identity, message, and website need to tell the same story.
 3. A senior team can make that change without the usual agency layers.
 4. Start with the smallest format that can move the milestone forward.
 
@@ -53,9 +53,9 @@ One conversion-led landing page, copy direction, custom visual language, respons
 
 Positioning workshop, brand refinement, multi-page website, motion system, Framer or React development, and CMS handoff. Typical range: from €9k, 4–6 weeks.
 
-### Product partner
+### Website support
 
-Product UI/UX, design systems, prototypes, and direct engineering collaboration. Scoped sprint or rolling partnership.
+New pages, conversion improvements, visual assets, and ongoing design and development after launch. Flexible scope.
 
 ## Verbal identity
 
@@ -75,31 +75,31 @@ Larpo Studio
 
 ### X bio
 
-Senior design partner for funded SaaS & AI teams. Brand, websites and product—from positioning to shipped build. Europe ↔ global.
+Website design and development for SaaS & AI teams. From positioning and identity to the shipped site. Europe ↔ global.
 
 ### LinkedIn company description
 
-Larpo is a senior-led design and development studio for funded SaaS, AI and fintech teams. We turn complex products into clear brands, conversion-focused websites and launch-ready interfaces. One team owns the story from positioning through production.
+Larpo is a senior-led website design and development studio for funded SaaS, AI and fintech teams. We turn complex offers into clear brands and conversion-focused websites. One team owns the work from positioning through launch.
 
 ### LinkedIn tagline
 
-Brand, websites, and product design for software teams entering their next stage.
+Website design and development for software teams ready to grow.
 
 ### Instagram bio
 
-Brand, web & product for software teams.
+Identity, web design & development.
 Senior-led. Europe ↔ global.
 Book a fit call ↓
 
 ### Social header line
 
-Websites, product design, and branding for SaaS & AI startups.
+Website design and development for SaaS & AI startups.
 
 ### Pinned profile post
 
 Larpo helps funded software teams look ready for what comes next.
 
-Brand, websites, and product design—shaped by one senior team and carried through to the shipped build.
+Strategy, identity, design, and development—shaped by one senior team and carried through to the shipped website.
 
 For launches, raises, repositioning, and product expansion.
 
@@ -117,7 +117,7 @@ Selected work and availability: larpo.studio
 
 - **Paper:** `#FFFFFF`
 - **Ink:** `#151513`
-- **Soft surface:** `#F7F7F5`
+- **Soft surface:** `#F5F5F2`
 - **Quiet:** `#73736D`
 - **Line:** `#E9E9E6`
 
@@ -125,12 +125,13 @@ The exact Figma aperture mark is the signature. The navigation uses only the mar
 
 Geist is the only typeface. Body copy uses `-0.015em` tracking, buttons stay close to `-0.01em`, and display lines tighten to roughly `-0.045em`. Scale stays restrained: work, spacing, and proof carry the hierarchy instead of oversized headlines.
 
-The page order is fixed: work-led hero, selected clients, short capability statement, testimonials, pricing, FAQ, and footer. Surfaces are borderless wherever grouping remains obvious through spacing or a subtle neutral fill.
+The page order is fixed: direct hero, infinite work reel, selected clients, concise website capabilities, compact testimonials, pricing, FAQ, and footer. Surfaces are borderless wherever grouping remains obvious through spacing or a subtle neutral fill.
 
 ## Motion principles
 
 - Hero content and work enter once with opacity and small vertical transforms.
 - Scroll reveals use opacity and small vertical transforms only.
 - Image hover movement stays below 2% scale; button movement stays within 1px.
-- No blur, blob, gradient, marquee, bounce, or decorative logo animation.
+- The work reel may loop continuously; it pauses on hover and becomes a static scrollable row when reduced motion is requested.
+- Transparent surfaces are limited to the navigation, secondary actions, proof, and pricing. No blobs or decorative blur fields.
 - Reduced-motion mode keeps all content visible and removes scroll-linked movement.

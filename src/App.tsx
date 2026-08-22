@@ -1,109 +1,125 @@
-import {
-  AnimatePresence,
-  motion,
-  useReducedMotion,
-} from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ReactLenis } from "lenis/react";
-import { useState } from "react";
+import { type ReactNode, useState } from "react";
 
-const offers = [
-  {
-    name: "Launch sprint",
-    price: "From €4k",
-    time: "2–3 weeks",
-    description:
-      "One focused page with sharp positioning, custom visuals, responsive design, and a live build.",
-    items: ["Landing page", "Copy direction", "Framer development", "Launch support"],
-  },
-  {
-    name: "Marketing site",
-    price: "From €9k",
-    time: "4–6 weeks",
-    description:
-      "A complete brand and website system for a company entering a higher-stakes stage.",
-    items: ["Positioning workshop", "Multi-page website", "Motion system", "CMS handoff"],
-    featured: true,
-  },
-  {
-    name: "Product partner",
-    price: "Custom",
-    time: "Rolling",
-    description:
-      "Senior product design support that works directly with founders and engineering teams.",
-    items: ["Product UI/UX", "Design systems", "Prototypes", "Embedded collaboration"],
-  },
+const BOOKING_URL = "https://avero.studio/intro";
+const MESSAGE_URL = "https://t.me/augustasdesign";
+const ASSET_BASE = import.meta.env.BASE_URL;
+const ease = [0.22, 1, 0.36, 1] as const;
+
+const projects = [
+  { name: "Stacker", type: "Marketing website", image: "work-01.webp" },
+  { name: "Tandem", type: "Marketing website", image: "work-02.webp" },
+  { name: "Lunor", type: "Website visuals", image: "work-03.webp" },
+  { name: "Lunor", type: "Dark visual system", image: "work-04.webp" },
+  { name: "Contles", type: "Marketing website", image: "work-05.webp" },
+  { name: "Fintech", type: "Website visuals", image: "work-06.webp" },
 ];
 
-const faqs = [
+const services = [
   {
-    question: "Who is Larpo best suited for?",
-    answer:
-      "Funded SaaS, AI, fintech, and software teams with a real launch, raise, repositioning, or product milestone ahead. We are most useful when the quality bar is high and speed still matters.",
+    number: "01",
+    title: "Direction",
+    description: "Website strategy, positioning, page structure, and copy direction.",
   },
   {
-    question: "Can you handle both design and development?",
-    answer:
-      "Yes. Website engagements can include a production-ready Framer build or a React handoff. Product work is delivered with documented states, responsive behavior, and clean engineering collaboration.",
+    number: "02",
+    title: "Identity",
+    description: "Logos, visual systems, art direction, and custom brand assets.",
   },
   {
-    question: "How soon can a project start?",
-    answer:
-      "Usually within one to three weeks, depending on scope and current capacity. If you have a fixed launch date, share it on the first call and we will be direct about what is realistic.",
+    number: "03",
+    title: "Web design",
+    description: "Landing pages and full marketing sites designed around conversion.",
   },
   {
-    question: "How do revisions work?",
-    answer:
-      "We align on direction early, share work continuously, and revise within the agreed scope until the outcome feels right. No big-reveal handoffs and no feedback disappearing into a queue.",
-  },
-  {
-    question: "Can you work with our existing team?",
-    answer:
-      "That is the default. We collaborate directly with founders, marketers, product leads, and engineers, and adapt the level of ownership to the team you already have.",
-  },
-  {
-    question: "What happens after launch?",
-    answer:
-      "We can stay for iteration, conversion work, new pages, product expansion, and design-system support—or leave you with a clean, documented handoff your team can own.",
+    number: "04",
+    title: "Development",
+    description: "Responsive Framer or React builds, CMS, motion, analytics, and launch.",
   },
 ];
 
 const testimonials = [
   {
     quote:
-      "We had our entire platform designed by Avero, and they absolutely delivered. Custom assets, clear communication, and hundreds of pixel-perfect screens done in days rather than weeks. Highly recommend Avero studio as a long-term design partner.",
-    name: "Blaise Gulaj",
-    role: "CTO, AI Acquisition",
-  },
-  {
-    quote:
-      "Avero delivered a clean, modern landing page design that matched our vision perfectly. Creativity was inspiring, passion for work showed in every detail. Great communication made the whole process easy. Turnaround time was super short. I’d recommend Avero without hesitation!",
+      "Avero delivered a clean, modern landing page that matched our vision perfectly. Great communication made the whole process easy, and the turnaround was super short.",
     name: "Alex Prompter",
     role: "Co-founder, God of Prompt",
+    avatar: "testimonials/alex-prompter.png",
   },
   {
     quote:
-      "Built multiple sites really quickly and now they generate us multiple 6-figs a year. Got help with branding and product design, thanks to Avero we’re able to launch our SaaS with ease!",
+      "Built multiple sites really quickly and now they generate us multiple six figures a year.",
     name: "Ares",
     role: "Founder, Sprout Capital",
+    avatar: "testimonials/ares.png",
   },
   {
     quote:
-      "Augustas is always quick to respond and delivered innovative web and product designs that nailed our modern fintech aesthetic. Easily one of the best bento designers around.",
-    name: "Alex Shi",
-    role: "Founder, Poof",
-  },
-  {
-    quote:
-      "We started our new site but ran out of time to finish it, so we urgently needed someone fast and talented to help us finish it. That’s when we found Avero. They nailed our brand look and built the entire front-end of the missing pages, saving us tons of time!",
+      "They nailed our brand look and built the entire front-end of the missing pages, saving us tons of time.",
     name: "Pelle Krukow",
     role: "CEO, FrostChanger",
+    avatar: "testimonials/pelle.png",
   },
 ];
 
-const ease = [0.22, 1, 0.36, 1] as const;
-const BOOKING_URL = "https://avero.studio/intro";
-const MESSAGE_URL = "https://t.me/augustasdesign";
-const ASSET_BASE = import.meta.env.BASE_URL;
+const offers = [
+  {
+    name: "Landing page",
+    price: "From €4k",
+    time: "2–3 weeks",
+    description: "A focused, conversion-ready page designed and built for one clear launch.",
+    items: ["Page strategy", "Copy direction", "Custom design", "Framer development"],
+  },
+  {
+    name: "Full website",
+    price: "From €9k",
+    time: "4–6 weeks",
+    description: "A complete marketing site with a visual system your team can keep growing.",
+    items: ["Multi-page website", "Logo or brand refinement", "Custom motion", "CMS and launch"],
+    featured: true,
+  },
+  {
+    name: "Website support",
+    price: "Custom",
+    time: "Flexible",
+    description: "Ongoing pages, improvements, and development after the first launch.",
+    items: ["New pages", "Conversion improvements", "Visual assets", "Design and development"],
+  },
+];
+
+const faqs = [
+  {
+    question: "What do you actually do?",
+    answer:
+      "We design and develop marketing websites for SaaS, AI, fintech, and software companies. That can include strategy, copy direction, logo or visual identity work, custom graphics, motion, Framer or React development, CMS setup, and launch support.",
+  },
+  {
+    question: "Can you handle both design and development?",
+    answer:
+      "Yes. One senior team takes the website from structure and visual direction through responsive design and a live Framer or React build.",
+  },
+  {
+    question: "How long does a project take?",
+    answer:
+      "A focused landing page usually takes two to three weeks. A complete marketing site typically takes four to six weeks, depending on page count, content, and feedback speed.",
+  },
+  {
+    question: "Do you help with the logo and brand?",
+    answer:
+      "Yes. We can create or refine the logo, typography, colors, art direction, and visual assets needed to make the website feel like one clear brand.",
+  },
+  {
+    question: "How do revisions work?",
+    answer:
+      "We share work throughout the project and align on direction early. Revisions within the agreed scope are included, so there is no one-shot reveal at the end.",
+  },
+  {
+    question: "What happens after launch?",
+    answer:
+      "We can stay on for new pages, experiments, improvements, and ongoing development—or hand over a clean site your team can manage.",
+  },
+];
 
 function ArrowNorthEast() {
   return <span className="text-icon" aria-hidden="true">↗</span>;
@@ -117,6 +133,22 @@ function Checkmark() {
   return <span className="checkmark" aria-hidden="true">✓</span>;
 }
 
+function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
+  const shouldReduceMotion = useReducedMotion();
+
+  return (
+    <motion.div
+      className={className}
+      initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
+      whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.16 }}
+      transition={{ duration: 0.68, delay, ease }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
 function App() {
   const shouldReduceMotion = useReducedMotion();
 
@@ -126,7 +158,7 @@ function App() {
       options={
         shouldReduceMotion
           ? { autoRaf: true, anchors: true, duration: 0 }
-          : { autoRaf: true, anchors: { offset: -88 }, duration: 1.05, smoothWheel: true }
+          : { autoRaf: true, anchors: { offset: -82 }, duration: 0.92, smoothWheel: true }
       }
     >
       <div className="site-shell">
@@ -134,9 +166,9 @@ function App() {
         <main>
           <Hero />
           <ClientStrip />
-          <CapabilityStatement />
-          <Proof />
-          <Offers />
+          <Services />
+          <Testimonials />
+          <Pricing />
           <Faq />
         </main>
         <Footer />
@@ -152,13 +184,13 @@ function Navigation() {
     <>
       <motion.header
         className="nav-wrap"
-        initial={{ y: -24, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.7, ease }}
+        initial={{ opacity: 0, y: -12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease }}
       >
-        <nav className="nav-pill" aria-label="Main navigation">
+        <nav className="nav-shell" aria-label="Main navigation">
           <a className="brand-link" href="#top" aria-label="Larpo Studio home">
-            <img src={`${ASSET_BASE}larpo-mark.svg`} alt="Larpo Studio" />
+            <img src={`${ASSET_BASE}larpo-mark.svg`} alt="" />
           </a>
           <div className="desktop-nav">
             <a href="#work">Work</a>
@@ -185,15 +217,15 @@ function Navigation() {
         {open ? (
           <motion.div
             className="mobile-menu"
-            initial={{ opacity: 0, y: -16 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.3, ease }}
+            initial={{ opacity: 0, y: -12, scale: 0.985 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -8, scale: 0.99 }}
+            transition={{ duration: 0.28, ease }}
           >
             <div className="mobile-menu-top">
-              <img src={`${ASSET_BASE}larpo-mark.svg`} alt="Larpo Studio" />
+              <img src={`${ASSET_BASE}larpo-mark.svg`} alt="" />
               <button type="button" aria-label="Close navigation" onClick={() => setOpen(false)}>
-                <span className="close-symbol" aria-hidden="true">×</span>
+                <span aria-hidden="true">×</span>
               </button>
             </div>
             <div className="mobile-menu-links">
@@ -219,124 +251,117 @@ function Navigation() {
 }
 
 function Hero() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
-    <section className="hero section" id="top">
+    <section className="hero" id="top">
       <div className="hero-copy container">
-        <motion.span
-          className="hero-eyebrow"
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.65, delay: 0.15, ease }}
-        >
-          Design and development studio · Europe
-        </motion.span>
         <motion.h1
-          initial={{ opacity: 0, y: 24 }}
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.85, delay: 0.22, ease }}
+          transition={{ duration: 0.78, delay: 0.12, ease }}
         >
-          Websites, product design, and branding for SaaS &amp; AI startups.
+          Website design and development for SaaS &amp; AI startups.
         </motion.h1>
         <motion.p
           className="hero-lead"
-          initial={{ opacity: 0, y: 20 }}
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.75, delay: 0.34, ease }}
+          transition={{ duration: 0.7, delay: 0.22, ease }}
         >
-          One senior team from first direction to shipped work. Built for seed to Series B teams
-          that need to launch faster and look ready for what comes next.
+          From logo and visual direction to a conversion-ready website—designed, built, and launched by one senior team.
         </motion.p>
         <motion.div
           className="hero-actions"
-          initial={{ opacity: 0, y: 18 }}
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.44, ease }}
+          transition={{ duration: 0.65, delay: 0.32, ease }}
         >
           <a className="button button-dark" href={BOOKING_URL}>
             Book a call <ArrowNorthEast />
           </a>
-          <a className="button button-light" href={MESSAGE_URL}>
+          <a className="button button-glass" href={MESSAGE_URL}>
             Write us a message <ArrowEast />
           </a>
         </motion.div>
       </div>
 
       <motion.div
-        className="hero-work container"
+        className="work-reel"
         id="work"
-        initial={{ opacity: 0, y: 36 }}
+        initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 0.5, ease }}
+        transition={{ duration: 0.86, delay: 0.42, ease }}
+        aria-label="Selected website work"
       >
-        <article className="featured-work">
-          <div className="featured-work-media">
-            <img src={`${ASSET_BASE}work-01.webp`} alt="Stacker website and product interface" />
-          </div>
-          <div className="featured-work-meta">
-            <strong>Stacker</strong>
-            <span>Website and product · 2026</span>
-          </div>
-        </article>
-        <article className="featured-work">
-          <div className="featured-work-media featured-work-dark">
-            <img src={`${ASSET_BASE}work-04.webp`} alt="Lunor software dashboard interface" />
-          </div>
-          <div className="featured-work-meta">
-            <strong>Lunor</strong>
-            <span>Product design · 2026</span>
-          </div>
-        </article>
+        <div className="work-track">
+          <ProjectGroup />
+          <ProjectGroup duplicate />
+        </div>
       </motion.div>
     </section>
   );
 }
 
+function ProjectGroup({ duplicate = false }: { duplicate?: boolean }) {
+  return (
+    <div className="work-group" aria-hidden={duplicate || undefined}>
+      {projects.map((project, index) => (
+        <figure className="work-card" key={`${project.name}-${index}-${duplicate ? "copy" : "main"}`}>
+          <div className="work-media">
+            <img src={`${ASSET_BASE}${project.image}`} alt={duplicate ? "" : `${project.name} ${project.type}`} />
+          </div>
+          <figcaption>
+            <strong>{project.name}</strong>
+            <span>{project.type}</span>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  );
+}
+
 function ClientStrip() {
+  const clients = [
+    ["◆", "Acquisity"],
+    [">_", "God of Prompt"],
+    ["⌁", "sprout."],
+    ["◒", "poof"],
+    ["▰", "Contles"],
+  ];
+
   return (
-    <section className="client-strip container" aria-label="Selected client experience">
-      <p>Selected Avero clients</p>
-      <div className="client-names">
-        <span>AI Acquisition</span>
-        <span>God of Prompt</span>
-        <span>Sprout Capital</span>
-        <span>Poof</span>
-        <span>FrostChanger</span>
+    <Reveal className="client-strip container">
+      <p>Selected client work</p>
+      <div className="client-logos" aria-label="Selected clients from Avero Studio projects">
+        {clients.map(([mark, name]) => (
+          <span className="client-logo" key={name}>
+            <span className="client-glyph" aria-hidden="true">{mark}</span>
+            {name}
+          </span>
+        ))}
       </div>
-    </section>
+    </Reveal>
   );
 }
 
-function CapabilityStatement() {
+function Services() {
   return (
-    <section className="capability section" id="services">
-      <div className="container capability-inner">
-        <div className="capability-intro">
-          <span className="eyebrow eyebrow-light">What we do</span>
-          <h2>One team for your brand, website, and product.</h2>
+    <section className="services section" id="services">
+      <div className="container services-layout">
+        <Reveal className="services-intro">
+          <h2>Everything your website needs, handled by one team.</h2>
           <p>
-            Strategy, design, and development stay with the same senior team. You move faster,
-            make fewer handoffs, and ship one consistent experience.
+            A clear offer, a visual identity people remember, and a fast website that is ready to sell.
           </p>
-        </div>
-        <div className="capability-list">
-          {[
-            ["01", "Brand systems", "Positioning, identity, art direction, launch assets"],
-            ["02", "Websites", "Strategy, copy direction, responsive design, Framer or React"],
-            ["03", "Product", "Core flows, interface systems, prototypes, engineering handoff"],
-          ].map(([number, title, description]) => (
-            <motion.div
-              className="capability-row"
-              key={number}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: 0.6, ease }}
-            >
-              <span>{number}</span>
-              <h3>{title}</h3>
-              <p>{description}</p>
-              <ArrowNorthEast />
-            </motion.div>
+        </Reveal>
+        <div className="service-list">
+          {services.map((service, index) => (
+            <Reveal className="service-row" key={service.number} delay={index * 0.045}>
+              <span>{service.number}</span>
+              <h3>{service.title}</h3>
+              <p>{service.description}</p>
+            </Reveal>
           ))}
         </div>
       </div>
@@ -344,81 +369,70 @@ function CapabilityStatement() {
   );
 }
 
-function Offers() {
+function Testimonials() {
   return (
-    <section className="offers section" id="pricing" aria-labelledby="offers-title">
+    <section className="testimonials section">
       <div className="container">
-        <div className="section-heading">
-          <div>
-            <span className="eyebrow">Pricing</span>
-            <h2 id="offers-title">Choose the scope you need.</h2>
-          </div>
-          <p>
-            Start with one page, a complete marketing site, or ongoing product design support.
-          </p>
-        </div>
-        <div className="offer-grid">
-          {offers.map((offer, index) => (
-            <motion.article
-              className={`offer-card ${offer.featured ? "offer-featured" : ""}`}
-              key={offer.name}
-              initial={{ opacity: 0, y: 26 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.25 }}
-              transition={{ duration: 0.65, delay: index * 0.08, ease }}
-            >
-              {offer.featured ? <span className="recommended">Most complete</span> : null}
-              <div className="offer-topline">
-                <h3>{offer.name}</h3>
-                <span>{offer.time}</span>
-              </div>
-              <strong>{offer.price}</strong>
-              <p>{offer.description}</p>
-              <ul>
-                {offer.items.map((item) => (
-                  <li key={item}>
-                    <Checkmark /> {item}
-                  </li>
-                ))}
-              </ul>
-              <a className="offer-link" href={BOOKING_URL}>
-                Discuss this format <ArrowNorthEast />
-              </a>
-            </motion.article>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Proof() {
-  return (
-    <section className="proof section">
-      <div className="container">
-        <div className="section-heading proof-heading">
-          <div>
-            <span className="eyebrow">Testimonials</span>
-            <h2>What clients say about the work.</h2>
-          </div>
-          <p>Original reviews from projects delivered through Avero Studio.</p>
-        </div>
-        <div className="proof-grid">
+        <Reveal className="compact-heading">
+          <h2>What clients say.</h2>
+          <p>Reviews from projects delivered through Avero Studio.</p>
+        </Reveal>
+        <div className="testimonial-grid">
           {testimonials.map((testimonial, index) => (
-            <motion.blockquote
-              key={testimonial.name}
-              className={index === testimonials.length - 1 ? "proof-wide" : ""}
-              initial={{ opacity: 0, y: 22 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6, delay: (index % 2) * 0.06, ease }}
-            >
-              <p>“{testimonial.quote}”</p>
-              <footer>
-                <strong>{testimonial.name}</strong>
-                <span>{testimonial.role}</span>
-              </footer>
-            </motion.blockquote>
+            <Reveal className="testimonial-wrap" key={testimonial.name} delay={index * 0.06}>
+              <blockquote className="testimonial-card">
+                <p>“{testimonial.quote}”</p>
+                <footer>
+                  <img src={`${ASSET_BASE}${testimonial.avatar}`} alt="" />
+                  <span>
+                    <strong>{testimonial.name}</strong>
+                    <small>{testimonial.role}</small>
+                  </span>
+                </footer>
+              </blockquote>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Pricing() {
+  return (
+    <section className="pricing section" id="pricing" aria-labelledby="pricing-title">
+      <div className="container">
+        <Reveal className="compact-heading pricing-heading">
+          <h2 id="pricing-title">A clear starting point.</h2>
+          <p>Final scope and price are agreed after a short call.</p>
+        </Reveal>
+        <div className="pricing-grid">
+          {offers.map((offer, index) => (
+            <Reveal className="price-wrap" key={offer.name} delay={index * 0.055}>
+              <article className={`price-card ${offer.featured ? "price-featured" : ""}`}>
+                <div className="price-top">
+                  <div>
+                    <h3>{offer.name}</h3>
+                    <span>{offer.time}</span>
+                  </div>
+                  <strong>{offer.price}</strong>
+                </div>
+                <p>{offer.description}</p>
+                <ul>
+                  {offer.items.map((item) => (
+                    <li key={item}><Checkmark /> {item}</li>
+                  ))}
+                </ul>
+                <div className="price-actions">
+                  <a className={`button ${offer.featured ? "button-white" : "button-dark"}`} href={BOOKING_URL}>
+                    Book a call <ArrowNorthEast />
+                  </a>
+                  <a className="message-link" href={MESSAGE_URL}>
+                    Write us a message <ArrowEast />
+                  </a>
+                </div>
+              </article>
+            </Reveal>
           ))}
         </div>
       </div>
@@ -429,16 +443,13 @@ function Proof() {
 function Faq() {
   return (
     <section className="faq section" id="faq">
-      <div className="container faq-grid">
-        <div>
-          <span className="eyebrow">FAQ</span>
-          <h2>Questions before we start.</h2>
-          <p>If your question is more specific, send it directly. You will hear from a designer.</p>
-          <a className="button button-light" href={MESSAGE_URL}>
-            <span className="message-mark" aria-hidden="true" /> Write us a message
-          </a>
-        </div>
-        <div className="faq-list">
+      <div className="container faq-layout">
+        <Reveal className="faq-intro">
+          <h2>Questions, answered.</h2>
+          <p>Still unsure? Send us the brief and you will hear directly from a designer.</p>
+          <a className="text-link" href={MESSAGE_URL}>Write us a message <ArrowEast /></a>
+        </Reveal>
+        <Reveal className="faq-list" delay={0.05}>
           {faqs.map((faq) => (
             <details key={faq.question}>
               <summary>
@@ -448,7 +459,7 @@ function Faq() {
               <p>{faq.answer}</p>
             </details>
           ))}
-        </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -457,26 +468,21 @@ function Faq() {
 function Footer() {
   return (
     <footer className="footer" id="contact">
-      <div className="container footer-cta">
-        <img src={`${ASSET_BASE}larpo-compact.svg`} alt="Larpo Studio" />
-        <span className="eyebrow eyebrow-light">Start a project</span>
-        <h2>Need a sharper website or product?</h2>
-        <p>Tell us what you are launching and when. We will suggest the clearest way to move it forward.</p>
-        <div className="final-actions">
-          <a className="button button-white" href={BOOKING_URL}>
-            Book a call <ArrowNorthEast />
-          </a>
-          <a className="button button-ghost" href={MESSAGE_URL}>
-            Write us a message
-          </a>
-        </div>
-      </div>
-      <div className="container footer-meta">
-        <div className="footer-top">
+      <div className="container footer-inner">
+        <Reveal className="footer-callout">
           <img src={`${ASSET_BASE}larpo-compact.svg`} alt="Larpo Studio" />
-          <p>Websites, product design, and branding for SaaS and AI startups.</p>
-        </div>
-        <div className="footer-bottom">
+          <h2>Have a website to ship?</h2>
+          <p>Tell us what you are launching. We will tell you the clearest way to build it.</p>
+          <div className="footer-actions">
+            <a className="button button-white" href={BOOKING_URL}>
+              Book a call <ArrowNorthEast />
+            </a>
+            <a className="button button-footer-glass" href={MESSAGE_URL}>
+              Write us a message <ArrowEast />
+            </a>
+          </div>
+        </Reveal>
+        <div className="footer-meta">
           <span>© 2026 Larpo Studio</span>
           <div>
             <a href="https://x.com/augustasdesign">X</a>
