@@ -1106,7 +1106,8 @@ img { display: block; max-width: 100%; }
 
   .faq-layout { gap: 40px; }
   .footer {
-    margin-bottom: calc(76px + env(safe-area-inset-bottom));
+    position: relative;
+    z-index: 101;
     border-radius: 22px 22px 0 0;
   }
   .footer-inner { width: calc(100% - 36px); padding-top: 58px; }
