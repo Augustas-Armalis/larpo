@@ -15,7 +15,6 @@ import {
   MessageCircle,
   MonitorSmartphone,
   PenTool,
-  PhoneCall,
   PlugZap,
   Plus,
   Rocket,
@@ -456,7 +455,8 @@ function Navigation() {
         </a>
         <div className="mobile-nav-actions" aria-label="contact options">
           <a className="mobile-nav-action mobile-nav-call" href={BOOKING_URL} target="_blank" rel="noopener noreferrer" aria-label="book a call">
-            <PhoneCall size={17} strokeWidth={2} aria-hidden="true" />
+            <CalendarDays size={16} strokeWidth={1.9} aria-hidden="true" />
+            <span>book</span>
           </a>
           <a className="mobile-nav-action mobile-nav-message" href={MESSAGE_URL} target="_blank" rel="noopener noreferrer" aria-label="write us on telegram">
             <MessageCircle size={17} strokeWidth={1.9} aria-hidden="true" />
