@@ -1046,12 +1046,16 @@ img { display: block; max-width: 100%; }
 @media (max-width: 760px) {
   :root { --pad: 18px; --radius: 16px; }
   .section { padding-block: 84px; }
-  .nav-wrap { top: 11px; width: calc(100% - 22px); }
+  .nav-wrap {
+    top: auto;
+    bottom: calc(11px + env(safe-area-inset-bottom));
+    width: calc(100% - 22px);
+  }
   .nav-shell { min-height: 52px; padding: 6px 6px 6px 14px; }
   .desktop-nav, .desktop-cta { display: none; }
   .mobile-nav-actions { display: flex; }
 
-  .hero { padding-top: 122px; padding-bottom: 24px; }
+  .hero { padding-top: 86px; padding-bottom: 24px; }
   .hero h1 { max-width: 560px; font-size: clamp(34px, 9.2vw, 39px); line-height: 1.01; }
   .hero h1 span { display: inline; }
   .hero-lead { max-width: 490px; font-size: 15px; }
@@ -1064,7 +1068,7 @@ img { display: block; max-width: 100%; }
 
   .archive-nav-wrap { width: calc(100% - 22px); }
   .archive-nav-shell { display: grid; }
-  .archive-main { padding: 118px 0 64px; }
+  .archive-main { padding: 76px 0 64px; }
   .archive-heading { margin-bottom: 28px; align-items: flex-start; flex-direction: column; gap: 18px; }
   .archive-grid { grid-template-columns: 1fr; gap: 12px; }
   .archive-card { padding: 5px; border-radius: 17px; }
@@ -1101,7 +1105,10 @@ img { display: block; max-width: 100%; }
   .support-copy > div { align-items: flex-start; flex-direction: column; gap: 3px; }
 
   .faq-layout { gap: 40px; }
-  .footer { border-radius: 22px 22px 0 0; }
+  .footer {
+    padding-bottom: calc(76px + env(safe-area-inset-bottom));
+    border-radius: 22px 22px 0 0;
+  }
   .footer-inner { width: calc(100% - 36px); padding-top: 58px; }
   .footer-main { gap: 32px; }
   .footer-copy > img { width: 78px; margin-bottom: 24px; }
