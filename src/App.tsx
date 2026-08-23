@@ -12,16 +12,15 @@ import {
   Fingerprint,
   LayoutTemplate,
   Map,
-  Menu,
   MessageCircle,
   MonitorSmartphone,
   PenTool,
+  PhoneCall,
   PlugZap,
   Plus,
   Rocket,
   Sparkles,
   Workflow,
-  X,
 } from "lucide-react";
 import { type ReactNode, useEffect, useRef, useState } from "react";
 
@@ -35,25 +34,13 @@ const currentYear = new Date().getFullYear();
 function ScrollReveal({
   children,
   className,
-  delay = 0,
+  delay: _delay = 0,
 }: {
   children: ReactNode;
   className?: string;
   delay?: number;
 }) {
-  const shouldReduceMotion = useReducedMotion();
-
-  return (
-    <motion.div
-      className={className}
-      initial={shouldReduceMotion ? false : { opacity: 0, transform: "translateY(14px)" }}
-      whileInView={{ opacity: 1, transform: "translateY(0px)" }}
-      viewport={{ once: true, amount: 0.16, margin: "0px 0px 5% 0px" }}
-      transition={{ duration: shouldReduceMotion ? 0.01 : 0.62, delay, ease }}
-    >
-      {children}
-    </motion.div>
-  );
+  return <div className={className}>{children}</div>;
 }
 
 const projects = Array.from({ length: 24 }, (_, index) => {
@@ -397,37 +384,26 @@ function WorkArchive() {
       }
     >
       <div className="site-shell archive-shell">
-        <motion.header
-          className="nav-wrap archive-nav-wrap"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.45, ease }}
-        >
+        <header className="nav-wrap archive-nav-wrap">
           <nav className="nav-shell archive-nav-shell" aria-label="work navigation">
             <a className="brand-link" href={ASSET_BASE} aria-label="larpo home">
               <img src={`${ASSET_BASE}larpo-mark.svg`} alt="" />
             </a>
-            <motion.span
+            <span
+              className={`archive-nav-title ${showNavTitle ? "is-visible" : ""}`}
               aria-hidden={!showNavTitle}
-              animate={{ opacity: showNavTitle ? 1 : 0, y: showNavTitle ? 0 : 3 }}
-              transition={{ duration: shouldReduceMotion ? 0.01 : 0.2, ease }}
             >
               selected work
-            </motion.span>
+            </span>
             <a className="archive-back" href={ASSET_BASE}>
               <ArrowLeft size={14} strokeWidth={1.9} aria-hidden="true" />
               home
             </a>
           </nav>
-        </motion.header>
+        </header>
 
         <main className="archive-main" id="top">
-          <motion.div
-            className="archive-heading container"
-            initial={shouldReduceMotion ? false : { opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: shouldReduceMotion ? 0.01 : 0.58, delay: 0.06, ease }}
-          >
+          <div className="archive-heading container">
             <h1 className="archive-title" ref={titleRef}>selected work</h1>
             <a
               className="button button-soft archive-lunor-link"
@@ -437,17 +413,13 @@ function WorkArchive() {
             >
               see more on lunor
             </a>
-          </motion.div>
+          </div>
 
           <div className="archive-grid container">
             {archiveProjects.map((image, index) => (
-              <motion.figure
+              <figure
                 className="archive-card"
                 key={image}
-                initial={shouldReduceMotion ? false : { opacity: 0, y: 14 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.12, margin: "0px 0px 6% 0px" }}
-                transition={{ duration: shouldReduceMotion ? 0.01 : 0.6, ease }}
               >
                 <img
                   src={`${ASSET_BASE}${image}`}
@@ -455,7 +427,7 @@ function WorkArchive() {
                   loading={index < 4 ? "eager" : "lazy"}
                   decoding="async"
                 />
-              </motion.figure>
+              </figure>
             ))}
           </div>
         </main>
@@ -466,120 +438,51 @@ function WorkArchive() {
 }
 
 function Navigation() {
-  const [open, setOpen] = useState(false);
-
   return (
-    <>
-      <motion.header
-        className="nav-wrap"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.45, ease }}
-      >
-        <nav className="nav-shell" aria-label="main navigation">
-          <a className="brand-link" href="#top" aria-label="larpo studio home">
-            <img src={`${ASSET_BASE}larpo-mark.svg`} alt="" />
+    <header className="nav-wrap">
+      <nav className="nav-shell" aria-label="main navigation">
+        <a className="brand-link" href="#top" aria-label="larpo studio home">
+          <img src={`${ASSET_BASE}larpo-mark.svg`} alt="" />
+        </a>
+        <div className="desktop-nav">
+          <a href={`${ASSET_BASE}work/`}>work</a>
+          <a href="#services">services</a>
+          <a href="#pricing">pricing</a>
+          <a href="#faq">faq</a>
+        </div>
+        <a className="nav-cta desktop-cta" href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
+          <CalendarDays size={14} strokeWidth={1.9} aria-hidden="true" />
+          book a call
+        </a>
+        <div className="mobile-nav-actions" aria-label="contact options">
+          <a className="mobile-nav-action mobile-nav-call" href={BOOKING_URL} target="_blank" rel="noopener noreferrer" aria-label="book a call">
+            <PhoneCall size={17} strokeWidth={2} aria-hidden="true" />
           </a>
-          <div className="desktop-nav">
-            <a href={`${ASSET_BASE}work/`}>work</a>
-            <a href="#services">services</a>
-            <a href="#pricing">pricing</a>
-            <a href="#faq">faq</a>
-          </div>
-          <a className="nav-cta desktop-cta" href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
-            <CalendarDays size={14} strokeWidth={1.9} aria-hidden="true" />
-            book a call
+          <a className="mobile-nav-action mobile-nav-message" href={MESSAGE_URL} target="_blank" rel="noopener noreferrer" aria-label="write us on telegram">
+            <MessageCircle size={17} strokeWidth={1.9} aria-hidden="true" />
           </a>
-          <button
-            className="menu-button"
-            type="button"
-            aria-label="open navigation"
-            aria-expanded={open}
-            onClick={() => setOpen(true)}
-          >
-            <Menu size={18} strokeWidth={1.9} aria-hidden="true" />
-          </button>
-        </nav>
-      </motion.header>
-
-      <AnimatePresence>
-        {open ? (
-          <motion.div
-            className="mobile-menu"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.18 }}
-          >
-            <div className="mobile-menu-top">
-              <img src={`${ASSET_BASE}larpo-mark.svg`} alt="" />
-              <button type="button" aria-label="close navigation" onClick={() => setOpen(false)}>
-                <X size={18} strokeWidth={1.9} aria-hidden="true" />
-              </button>
-            </div>
-            <div className="mobile-menu-links">
-              {[
-                ["work", `${ASSET_BASE}work/`],
-                ["services", "#services"],
-                ["pricing", "#pricing"],
-                ["faq", "#faq"],
-              ].map(([label, href]) => (
-                <a key={label} href={href} onClick={() => setOpen(false)}>
-                  {label}
-                </a>
-              ))}
-            </div>
-            <div className="mobile-menu-actions">
-              <a className="button button-dark" href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
-                <CalendarDays size={15} strokeWidth={1.9} aria-hidden="true" />
-                book a call
-              </a>
-              <a className="button button-soft" href={MESSAGE_URL} target="_blank" rel="noopener noreferrer">
-                <MessageCircle size={15} strokeWidth={1.9} aria-hidden="true" />
-                write us a message
-              </a>
-            </div>
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
-    </>
+        </div>
+      </nav>
+    </header>
   );
 }
 
 function Hero() {
-  const shouldReduceMotion = useReducedMotion();
-  const initial = shouldReduceMotion ? false : { opacity: 0, y: 8 };
-
   return (
     <section className="hero" id="top">
       <div className="hero-copy container">
-        <motion.div
-          className="hero-status"
-          initial={initial}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease }}
-        >
+        <div className="hero-status">
           <span aria-hidden="true" />
           4 project spots open for {currentMonth}
-        </motion.div>
-        <motion.h1 initial={initial} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.62, ease }}>
+        </div>
+        <h1>
           <span>your brand and website</span>{" "}
           <span>built from zero to launch</span>
-        </motion.h1>
-        <motion.p
-          className="hero-lead"
-          initial={initial}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.58, delay: 0.08, ease }}
-        >
+        </h1>
+        <p className="hero-lead">
           for saas and ai teams. bring an existing brand or start with nothing. we handle the strategy, identity, web design, custom code and every final connection
-        </motion.p>
-        <motion.div
-          className="hero-actions"
-          initial={initial}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.54, delay: 0.16, ease }}
-        >
+        </p>
+        <div className="hero-actions">
           <a className="button button-dark" href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
             <CalendarDays size={15} strokeWidth={1.9} aria-hidden="true" />
             book a call
@@ -588,23 +491,20 @@ function Hero() {
             <MessageCircle size={15} strokeWidth={1.9} aria-hidden="true" />
             write us a message
           </a>
-        </motion.div>
+        </div>
       </div>
 
-      <motion.a
+      <a
         className="work-reel work-reel-link"
         id="work"
         href={`${ASSET_BASE}work/`}
         aria-label="view the full larpo work archive"
-        initial={shouldReduceMotion ? false : { opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.64, delay: 0.24, ease }}
       >
         <div className="work-track">
           <ProjectGroup />
           <ProjectGroup duplicate />
         </div>
-      </motion.a>
+      </a>
     </section>
   );
 }
@@ -626,16 +526,10 @@ function ProjectGroup({ duplicate = false }: { duplicate?: boolean }) {
 }
 
 function ClientStrip() {
-  const shouldReduceMotion = useReducedMotion();
-
   return (
-    <motion.section
+    <section
       className="client-strip container"
       aria-labelledby="client-strip-title"
-      initial={shouldReduceMotion ? false : { opacity: 0, transform: "translateY(12px)" }}
-      whileInView={{ opacity: 1, transform: "translateY(0px)" }}
-      viewport={{ once: true, amount: 0.18, margin: "0px 0px 5% 0px" }}
-      transition={{ duration: shouldReduceMotion ? 0.01 : 0.62, delay: 0.04, ease }}
     >
       <p id="client-strip-title">trusted by fast-moving teams</p>
       <div className="client-logos">
@@ -644,7 +538,7 @@ function ClientStrip() {
         ))}
         <span className="client-count" aria-label="and more than twenty additional teams">20+</span>
       </div>
-    </motion.section>
+    </section>
   );
 }
 
