@@ -202,6 +202,11 @@ img { display: block; max-width: 100%; }
   letter-spacing: -0.014em;
 }
 .mobile-nav-call:hover { background: #303236; }
+.mobile-nav-work {
+  color: #55585d;
+  background: var(--soft);
+}
+.mobile-nav-work:hover { background: #eceef0; }
 .mobile-nav-message { color: #55585d; background: var(--soft); }
 .mobile-nav-message:hover { background: #eceef0; }
 
@@ -1115,8 +1120,8 @@ img { display: block; max-width: 100%; }
   .footer-copy > img { width: 78px; margin-bottom: 24px; }
   .footer-actions { width: 100%; flex-direction: column; }
   .footer-actions .button { width: 100%; }
-  .footer-meta { grid-template-columns: 1fr; gap: 16px; }
-  .footer-meta > nav { flex-wrap: wrap; }
+  .footer-meta { grid-template-columns: minmax(0, 1fr) auto; gap: 12px; }
+  .footer-meta > nav { flex-wrap: nowrap; gap: 20px; }
 }
 
 @media (max-width: 560px) {

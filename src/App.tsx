@@ -10,6 +10,7 @@ import {
   Compass,
   FileText,
   Fingerprint,
+  Images,
   LayoutTemplate,
   Map,
   MessageCircle,
@@ -460,6 +461,9 @@ function Navigation() {
           </a>
           <a className="mobile-nav-action mobile-nav-message" href={MESSAGE_URL} target="_blank" rel="noopener noreferrer" aria-label="write us on telegram">
             <MessageCircle size={17} strokeWidth={1.9} aria-hidden="true" />
+          </a>
+          <a className="mobile-nav-action mobile-nav-work" href={`${ASSET_BASE}work/`} aria-label="view selected work">
+            <Images size={17} strokeWidth={1.85} aria-hidden="true" />
           </a>
         </div>
       </nav>
