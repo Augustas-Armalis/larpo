@@ -323,8 +323,9 @@ const faqs = [
   },
 ];
 
-function App() {
-  const isWorkArchive = window.location.pathname.replace(/\/$/, "").endsWith("/work");
+function App({ routePath }: { routePath?: string }) {
+  const pathname = routePath ?? (typeof window === "undefined" ? "/" : window.location.pathname);
+  const isWorkArchive = pathname.replace(/\/$/, "").endsWith("/work");
 
   return isWorkArchive ? <WorkArchive /> : <LandingPage />;
 }
