@@ -25,7 +25,16 @@ import {
 import { type ReactNode, useEffect, useRef, useState } from "react";
 
 const BOOKING_URL = "https://cal.com/larpo/15min";
-const MESSAGE_URL = "https://t.me/augustasdesign";
+const BOT_URL = "https://t.me/larpostudiobot";
+type Placement =
+  | "hero"
+  | "footer"
+  | "faq"
+  | "nav"
+  | "pricing_landing"
+  | "pricing_full"
+  | "support";
+const botLink = (placement: Placement) => `${BOT_URL}?start=web_${placement}`;
 const ASSET_BASE = import.meta.env.BASE_URL;
 const ease = [0.16, 1, 0.3, 1] as const;
 const currentMonth = new Intl.DateTimeFormat("en", { month: "long" }).format(new Date()).toLowerCase();
@@ -253,6 +262,7 @@ const testimonials: Testimonial[] = [
 const offers = [
   {
     name: "landing page",
+    payload: "pricing_landing" as const,
     price: "€4,000",
     time: "2 to 3 weeks",
     description: "one focused page, custom built and ready to launch quickly",
@@ -266,6 +276,7 @@ const offers = [
   },
   {
     name: "full website",
+    payload: "pricing_full" as const,
     price: "€9,000+",
     time: "4 to 6 weeks",
     description: "a complete brand and custom website, for bigger teams & projects",
@@ -460,7 +471,7 @@ function Navigation() {
             <CalendarDays size={16} strokeWidth={1.9} aria-hidden="true" />
             <span>book</span>
           </a>
-          <a className="mobile-nav-action mobile-nav-message" href={MESSAGE_URL} target="_blank" rel="noopener noreferrer" aria-label="write us on telegram">
+          <a className="mobile-nav-action mobile-nav-message" href={botLink("nav")} target="_blank" rel="noopener noreferrer" aria-label="write us on telegram">
             <MessageCircle size={17} strokeWidth={1.9} aria-hidden="true" />
           </a>
           <a className="mobile-nav-action mobile-nav-work" href={`${ASSET_BASE}work/`} aria-label="view selected work">
@@ -492,7 +503,7 @@ function Hero() {
             <CalendarDays size={15} strokeWidth={1.9} aria-hidden="true" />
             book a call
           </a>
-          <a className="button button-soft" href={MESSAGE_URL} target="_blank" rel="noopener noreferrer">
+          <a className="button button-soft" href={botLink("hero")} target="_blank" rel="noopener noreferrer">
             <MessageCircle size={15} strokeWidth={1.9} aria-hidden="true" />
             write us a message
           </a>
@@ -692,7 +703,7 @@ function Pricing() {
                 </a>
                 <a
                   className={`button ${offer.featured ? "button-dark-soft" : "button-soft"}`}
-                  href={MESSAGE_URL}
+                  href={botLink(offer.payload)}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -713,7 +724,7 @@ function Pricing() {
               <span>add pages, custom bots, workflow automations and integrations as you need them</span>
             </div>
           </div>
-          <a className="button button-soft-strong" href={MESSAGE_URL} target="_blank" rel="noopener noreferrer">
+          <a className="button button-soft-strong" href={botLink("support")} target="_blank" rel="noopener noreferrer">
             <MessageCircle size={15} strokeWidth={1.9} aria-hidden="true" />
             write us a message
           </a>
@@ -733,7 +744,7 @@ function Faq() {
         <div className="faq-intro">
           <h2>faq</h2>
           <p>have more questions? write to us. we reply immediately</p>
-          <a className="button button-soft" href={MESSAGE_URL} target="_blank" rel="noopener noreferrer">
+          <a className="button button-soft" href={botLink("faq")} target="_blank" rel="noopener noreferrer">
             <MessageCircle size={15} strokeWidth={1.9} aria-hidden="true" />
             write us a message
           </a>
@@ -806,7 +817,7 @@ function Footer() {
               <CalendarDays size={15} strokeWidth={1.9} aria-hidden="true" />
               book a call
             </a>
-            <a className="button button-dark-soft" href={MESSAGE_URL} target="_blank" rel="noopener noreferrer">
+            <a className="button button-dark-soft" href={botLink("footer")} target="_blank" rel="noopener noreferrer">
               <MessageCircle size={15} strokeWidth={1.9} aria-hidden="true" />
               write us a message
             </a>
