@@ -47,11 +47,11 @@ These references are ingredients, not templates. Larpo's aperture mark, mileston
 
 ### Launch sprint
 
-One conversion-led landing page, copy direction, custom visual language, responsive design, and live Framer build. Typical range: from €4k, 2–3 weeks.
+One conversion-led landing page, copy direction, custom visual language, responsive design, and live Framer build. Typical range: from €3k, 2–3 weeks.
 
 ### Marketing site
 
-Positioning workshop, brand refinement, multi-page website, motion system, Framer or React development, and CMS handoff. Typical range: from €9k, 4–6 weeks.
+Positioning workshop, brand refinement, multi-page website, motion system, Framer or React development, and CMS handoff. Typical range: from €7k, 4–6 weeks.
 
 ### Website support
 

@@ -58,11 +58,11 @@ the offer covers the entire customer-facing web presence:
 
 **launch page**
 
-one focused page, custom built and ready to launch quickly. starts from €4,000.
+one focused page, custom built and ready to launch quickly. starts from €3,000.
 
 **full website**
 
-a complete brand and custom website, for bigger teams and projects. starts from €9,000.
+a complete brand and custom website, for bigger teams and projects. starts from €7,000.
 
 **after launch**
 

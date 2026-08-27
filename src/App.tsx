@@ -263,7 +263,7 @@ const offers = [
   {
     name: "landing page",
     payload: "pricing_landing" as const,
-    price: "€4,000",
+    price: "€3,000",
     time: "2 to 3 weeks",
     description: "one focused page, custom built and ready to launch quickly",
     items: [
@@ -277,7 +277,7 @@ const offers = [
   {
     name: "full website",
     payload: "pricing_full" as const,
-    price: "€9,000+",
+    price: "€7,000+",
     time: "4 to 6 weeks",
     description: "a complete brand and custom website, for bigger teams & projects",
     items: [
@@ -315,7 +315,7 @@ const faqs = [
   {
     question: "what does it cost?",
     answer:
-      "a custom landing page starts at €4,000. a complete brand and custom website starts at €9,000. after a short call, you get a clear scope, timeline and fixed project plan before work begins",
+      "a custom landing page starts at €3,000. a complete brand and custom website starts at €7,000. after a short call, you get a clear scope, timeline and fixed project plan before work begins",
   },
   {
     question: "can my team update the website?",
