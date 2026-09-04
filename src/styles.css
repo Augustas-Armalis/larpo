@@ -183,24 +183,22 @@ img { display: block; max-width: 100%; }
 
 .mobile-nav-action {
   display: inline-flex;
-  width: 40px;
   height: 40px;
-  padding: 0;
+  padding: 0 12px;
   border: 0;
   border-radius: 12px;
   align-items: center;
   justify-content: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 620;
+  letter-spacing: -0.014em;
   transition: background 160ms ease, color 160ms ease, opacity 160ms ease;
 }
 
 .mobile-nav-call {
-  width: 72px;
-  gap: 6px;
   color: var(--white);
   background: var(--ink);
-  font-size: 12px;
-  font-weight: 620;
-  letter-spacing: -0.014em;
 }
 .mobile-nav-call:hover { background: #303236; }
 .mobile-nav-work {
@@ -1053,8 +1051,7 @@ img { display: block; max-width: 100%; }
   :root { --pad: 18px; --radius: 16px; }
   .section { padding-block: 84px; }
   .nav-wrap {
-    top: auto;
-    bottom: calc(11px + env(safe-area-inset-bottom));
+    top: calc(11px + env(safe-area-inset-top));
     width: calc(100% - 22px);
   }
   .nav-shell { min-height: 52px; padding: 6px 6px 6px 14px; }

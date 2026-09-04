@@ -467,15 +467,17 @@ function Navigation() {
           book a call
         </a>
         <div className="mobile-nav-actions" aria-label="contact options">
+          <a className="mobile-nav-action mobile-nav-work" href={`${ASSET_BASE}work/`} aria-label="view selected work">
+            <Images size={16} strokeWidth={1.85} aria-hidden="true" />
+            <span>work</span>
+          </a>
+          <a className="mobile-nav-action mobile-nav-message" href={botLink("nav")} target="_blank" rel="noopener noreferrer" aria-label="chat on telegram">
+            <MessageCircle size={16} strokeWidth={1.9} aria-hidden="true" />
+            <span>chat</span>
+          </a>
           <a className="mobile-nav-action mobile-nav-call" href={BOOKING_URL} target="_blank" rel="noopener noreferrer" aria-label="book a call">
             <CalendarDays size={16} strokeWidth={1.9} aria-hidden="true" />
             <span>book</span>
-          </a>
-          <a className="mobile-nav-action mobile-nav-message" href={botLink("nav")} target="_blank" rel="noopener noreferrer" aria-label="write us on telegram">
-            <MessageCircle size={17} strokeWidth={1.9} aria-hidden="true" />
-          </a>
-          <a className="mobile-nav-action mobile-nav-work" href={`${ASSET_BASE}work/`} aria-label="view selected work">
-            <Images size={17} strokeWidth={1.85} aria-hidden="true" />
           </a>
         </div>
       </nav>
